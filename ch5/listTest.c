@@ -58,7 +58,87 @@ int main(int argc, char const *argv[])
         }
     }
 
+    print_list(&list);
 
+    element = list_head(&list);
+
+    for(i =0; i < 7; i++){
+        element = list_next(element);
+    }
+
+    data = list_data(element);
+    fprintf(stdout, "Removing an element after the one containing %03d\n", *data);
+
+    if(list_rem_next(&list, element, (void **)&data) != 0){
+        return -1;
+    }
+
+    print_list(&list);
+
+    fprintf(stdout, "Inserting 011 at the tail of the list.\n");
+    
+    *data = 11;
+
+    if(list_ins_next(&list, list_tail(&list), data) != 0){
+        return 1;
+    }
+
+    print_list(&list);
+
+    fprintf(stdout, "Removing an element after the first element\n");
+
+    element = list_head(&list);
+    if(list_rem_next(&list, element, (void **)&data) != 0){
+        return 1;
+    }
+
+    print_list(&list);
+
+    fprintf(stdout, "Inserting 012 at the head of the list\n");
+    
+    *data = 12;
+    if(list_ins_next(&list, NULL, data) != 0){
+        return 1;
+    }
+
+    print_list(&list);
+
+    fprintf(stdout, "Iterating and removing the fourth element\n");
+
+    element = list_head(&list);
+    element = list_next(element);
+    element = list_next(element);
+
+    if(list_rem_next(&list, element, (void **)&data) != 0){
+        return 1;
+    }
+
+    print_list(&list);
+
+    fprintf(stdout, "Inserting 013 after the first element\n");
+
+    *data = 13;
+    if(list_ins_next(&list, list_head(&list), data) != 0){
+        return 1;
+    }
+
+    print_list(&list);
+
+    i = list_is_head(&list, list_head(&list));
+    fprintf(stdout, "Testing list_is_head...Value=%d (1=OK)\n", i);
+    i = list_is_head(&list, list_tail(&list));
+    fprintf(stdout, "Testing list_is_head...Value=%d (0=OK)\n", i);
+    i = list_is_tail(list_tail(&list));
+    fprintf(stdout, "Testing list_is_tail...Value=%d (1=OK)\n", i);
+    i = list_is_tail(list_head(&list));
+    fprintf(stdout, "Testing list_is_tail...Value=%d (0=OK)\n", i);
+
+    /**
+     * @brief Destroy the linked list.
+     * 
+     */
+    fprintf(stdout, "Destroying the list\n");
+    list_destroy(&list);
 
     return 0;
 }
