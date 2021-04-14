@@ -161,7 +161,7 @@ int dlist_ins_prev(DList *list, DListElmt *element, const void *data){
         new_element->prev = element->prev;
         
         if(element->prev == NULL){
-            list->head == new_element;
+            list->head = new_element;
         } else {
             element->prev->next = new_element;
         }
