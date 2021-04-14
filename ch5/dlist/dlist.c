@@ -207,7 +207,7 @@ int dlist_remove(DList *list, DListElmt *element, void **data){
          * 
          */
         element->prev->next = element->next;
-        if(element->next = NULL){
+        if(element->next == NULL){
             list->tail = element->prev;
         } else {
             element->next->prev = element->prev;
