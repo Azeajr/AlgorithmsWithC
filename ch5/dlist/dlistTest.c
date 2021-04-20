@@ -79,5 +79,65 @@ int main(int argc, char const *argv[])
 
     print_list(&list);
 
+    element = dlist_head(&list);
+    for(i = 0; i < 8; i++){
+        element = dlist_next(element);
+    }
+
+    data = dlist_data(element);
+    fprintf(stdout, "Removing an element containing %03d\n", *data);
+
+    if(dlist_remove(&list, element, (void **)&data) != 0){
+        return 1;
+    }
+
+    print_list(&list);
+
+    fprintf(stdout, "Inserting 011 at the tail of the list\n");
+
+    *data = 11;
+    if(dlist_ins_next(&list, dlist_tail(&list), data) != 0){
+        return 1;
+    }
+
+    print_list(&list);
+
+    fprintf(stdout, "Removing an element at the tail of the list\n");
+
+    element = dlist_tail(&list);
+    if(dlist_remove(&list, element, (void **)&data) != 0){
+        return 1;
+    }
+
+    print_list(&list);
+
+    fprintf(stdout, "Inserting 012 just before the tail of the list\n");
+
+    *data = 12;
+    if(dlist_ins_prev(&list, dlist_tail(&list), data) != 0){
+        return 1;
+    }
+
+    print_list(&list);
+
+    fprintf(stdout, "Iterating and removing the fourth element\n");
+
+    element = dlist_head(&list);
+    element = dlist_next(element);
+    element = dlist_prev(element);
+    element = dlist_next(element);
+    element = dlist_prev(element);
+    element = dlist_next(element);
+    element = dlist_next(element);
+    element = dlist_next(element);
+
+    if(dlist_remove(&list, element, (void **)&data) != 0){
+        return 1;
+    }
+
+    print_list(&list);
+
+
+
     return 0;
 }
