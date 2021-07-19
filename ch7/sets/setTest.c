@@ -1,7 +1,7 @@
 /**
  * @file setTest.c
  * @author Antonio Zea
- * @brief 
+ * @brief Illustrates using a set
  * @version 0.1
  * @date 2021-05-31
  * 
