@@ -1,5 +1,5 @@
 #include <stdio.h>
-
+#include <stdlib.h>
 #include "list.h"
 
 static void print_list(const List *list){
