@@ -45,7 +45,7 @@ int main(int argc, char const *argv[]){
 
     set_init(&set, match_int, free);
     fprintf(stdout, "Inserting 10 members\n");
-    for(i = 0; i >= 0; i--){
+    for(i = 9; i >= 0; i--){
         if((data = (int *)malloc(sizeof(int))) == NULL){
             return 1;
         }
@@ -228,7 +228,7 @@ int main(int argc, char const *argv[]){
 
     fprintf(stdout, "Testing whether the intersection is a subset of Set 1...Value=%d (1=OK)\n", set_is_subset(&set, &set1));
 
-    fprintf(stdout, "Testing whether Set 2 is a subset of Set 1...Value=%d (1=OK)\n", set_is_subset(&set2, &set1));
+    fprintf(stdout, "Testing whether Set 2 is a subset of Set 1...Value=%d (0=OK)\n", set_is_subset(&set2, &set1));
 
     fprintf(stdout, "Destroying the intersection\n");
     set_destroy(&set);
