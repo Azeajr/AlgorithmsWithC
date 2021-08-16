@@ -8,7 +8,7 @@ LIBFLS =
 
 SRCFLS = setTest.c\
 		$(ALGOWC_TOPDIR)/src/list.c\
-		$(ALGOWC_TOPDIR)/scr/set.c
+		$(ALGOWC_TOPDIR)/src/set.c
 
 OBJFLS = setTest.o\
 		$(ALGOWC_TOPDIR)/src/list.o\
@@ -22,7 +22,7 @@ CFLAGS =
 LFLAGS =
 
 $(EXE): $(OBJFLS)
-		$(LL) $(LFLAGS) -o $@ $(OBJFLS) $(LIBDRS)
+		$(LL) $(LFLAGS) -o $@ $(OBJFLS) $(LIBDRS) $(LIBFLS)
 
 .c.o:
 		$(CC) $(CFLAGS) -o $@ -c $(INCDRS) $<
